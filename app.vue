@@ -9,7 +9,6 @@
           <div class="space-x-6">
             <NuxtLink to="/" class="hover:text-gaming-secondary transition">Home</NuxtLink>
             <NuxtLink to="/blog" class="hover:text-gaming-secondary transition">Blog</NuxtLink>
-            <NuxtLink to="/reviews" class="hover:text-gaming-secondary transition">Reviews</NuxtLink>
           </div>
         </div>
       </nav>
