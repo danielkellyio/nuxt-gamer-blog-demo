@@ -10,10 +10,9 @@
           <span class="mx-2">•</span>
           <span>{{ doc.readingTime }} min read</span>
         </div>
-        <img v-if="doc.image" :src="doc.image" :alt="doc.title" 
-          class="w-full h-64 object-cover rounded-lg mb-8" />
+        <img v-if="doc.image" :src="doc.image" :alt="doc.title" class="w-full h-64 object-cover rounded-lg mb-8" />
       </div>
-      
+
       <div class="prose prose-invert prose-lg max-w-none mb-12">
         <ContentRenderer :value="doc" />
       </div>
@@ -31,22 +30,13 @@
 <script setup>
 const route = useRoute()
 const slug = computed(() => route.params.slug.toString())
-const comments = ref([])
 
-// Fetch initial comments
-const fetchComments = async () => {
-  try {
-    comments.value = await $fetch(`/api/comments/${slug.value}`)
-  } catch (error) {
-    console.error('Failed to fetch comments:', error)
-  }
-}
+const { data: comments } = await useFetch(`/api/comments/${slug.value}`, {
+  lazy: true
+})
 
 // Add new comment to the list
 const onCommentAdded = (newComment) => {
   comments.value = [...comments.value, newComment]
 }
-
-// Fetch comments when component mounts
-onMounted(fetchComments)
 </script>
