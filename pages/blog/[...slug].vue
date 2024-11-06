@@ -37,6 +37,6 @@ const { data: comments } = await useFetch(`/api/comments/${slug.value}`, {
 
 // Add new comment to the list
 const onCommentAdded = (newComment) => {
-  comments.value = [...comments.value, newComment]
+  comments.value.push(newComment);
 }
 </script>
